@@ -1,0 +1,27 @@
+name: Terminal CSS
+version: 1.0.0
+description: Terminal CSS ported to use with Grav CMS.
+icon: terminal
+author:
+  name: Bonn333
+  email: root@bonn333.eu
+homepage: https://github.com/bonn333/grav-theme-terminal-css
+demo: https://bonn333.eu
+keywords: terminalcss, grav, theme, etc
+bugs: https://github.com/bonn333/grav-theme-terminal-css/issues
+readme: https://github.com/bonn333/grav-theme-terminal-css/blob/develop/README.md
+license: MIT
+
+form:
+  validation: loose
+  fields:
+    dropdown.enabled:
+        type: toggle
+        label: Dropdown in Menu
+        highlight: 1
+        default: 1
+        options:
+          1: PLUGIN_ADMIN.ENABLED
+          0: PLUGIN_ADMIN.DISABLED
+        validate:
+          type: bool

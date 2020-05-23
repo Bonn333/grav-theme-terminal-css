@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="{{ grav.language.getActive ?: grav.config.site.default_lang }}">
+<head>
+{% block head %}
+    <meta charset="utf-8" />
+    <title>{% if header.title %}{{ header.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% include 'partials/metadata.html.twig' %}
+
+    <link rel="icon" type="image/png" href="{{ url('theme://images/logo.png') }}" />
+    <link rel="canonical" href="{{ page.url(true, true) }}" />
+{% endblock head%}
+
+{% block stylesheets %}
+    {% do assets.addCss('theme://css/normalize.css', 101) %}
+    {% do assets.addCss('theme://css/terminal.min.css', 100) %}
+    {% do assets.addCss('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', 99) %}
+    {% do assets.addCss('theme://css/custom.css', 98) %}
+{% endblock %}
+
+{% block javascripts %}
+    {% do assets.addJs('jquery', 100) %}
+{% endblock %}
+
+{% block assets deferred %}
+    {{ assets.css()|raw }}
+    {{ assets.js()|raw }}
+{% endblock %}
+</head>
+<body id="top" class="{{ page.header.body_classes }} terminal">
+
+{% block header %}
+    <div class="container">
+        <div class="terminal-nav">
+	  <header class="terminal-logo">
+            <div class="logo terminal-prompt">
+            <a href="{{ home_url }}" class="no-style">
+                {{ config.site.title }}
+            </a>
+	  </header>
+            {% block header_navigation %}
+            <nav class="terminal-menu">
+                {% include 'partials/navigation.html.twig' %}
+            </nav>
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+  <footer>
+    <div class="container">
+            <p>Powered by <a href="http://getgrav.org">Grav</a> & <a href="https://terminalcss.xyz/">Terminal CSS</a></p>
+    </div>
+  </footer>
+{% endblock %}
+
+{% block bottom %}
+    {{ assets.js('bottom')|raw }}
+{% endblock %}
+
+</body>
+</html>
